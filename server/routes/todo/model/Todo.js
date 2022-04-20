@@ -17,6 +17,10 @@ const TodoSchema = new mongoose.Schema({
     isComplete: {
         type: Boolean,
         default: false
+    },
+
+    dateComplete: {
+        type: Date
     }
 
 }, {timestamps: true})

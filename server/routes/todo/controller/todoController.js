@@ -49,7 +49,11 @@ const getOneTodo = async (req, res) => {
 const updateTodo = async (req, res) => {
     const { id } = req.params
     try {
-        let updateTodo = await Todo.findByIdAndUpdate(id, req.body, { new: true })
+        const newObj = {...req.body}
+        if(req.body.isComplete === true) {
+            newObj.dateComplete = Date.now()
+        }
+        let updateTodo = await Todo.findByIdAndUpdate(id, newObj, { new: true })
         if(updateTodo === null) throw new Error("No todo with id found")
         res.status(200).json({ message: "updated todo", todo: updateTodo })
     }
