@@ -2,14 +2,13 @@ const Todo = require('../model/Todo')
 
 // Create todo
 const createTodo = async (req, res) => {
+    console.log(req.body)
     try {
-        const { title, description, priority, isComplete, date } = req.body
+        const { title, description, priority } = req.body
         const newTodo = new Todo({
             title: title,
             description: description,
-            priority: priority,
-            isComplete: isComplete,
-            date: date
+            priority: priority
         })
         const savedTodo = await newTodo.save()
         res.status(200).json({ message: "todo has been saved", payload: savedTodo })
